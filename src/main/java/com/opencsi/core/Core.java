@@ -36,7 +36,7 @@ public class Core
 		System.out.println("Try to connect into the SSL Server...");
 		sslclient = new SSLClient(arguments.getTargetHost(),arguments.getTargetPort(),arguments.getClientCertificate(),arguments.getCertificatePassphrase());
 		System.out.println("Done!");
-		System.out.println("Create the server into the X port with Y max connection...");
+		System.out.println("Create the server into the "+arguments.getListenPort()+" port with "+(arguments.getMax() == 0?150 : arguments.getMax())+" max connection...");
 		server = new Server(arguments.getListenPort(),arguments.getMax() == 0?150 : arguments.getMax());
 		System.out.println("Awaiting for client connection...");
 	}
