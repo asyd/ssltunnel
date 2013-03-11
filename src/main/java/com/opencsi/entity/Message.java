@@ -22,8 +22,6 @@ public class Message
 			 if(it.hasNext())
 				 return ((Element) (it.next())).getChild("C"+CodeError).getText();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 		}
 		return "The Server has return a " + CodeError + " HTTP Code Error.";
 	}
@@ -37,8 +35,6 @@ public class Message
 			 if(it.hasNext())
 				 return ((Element) (it.next())).getChild(message).getText();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return "Cannot connect to the SSL Server.";
 	}
