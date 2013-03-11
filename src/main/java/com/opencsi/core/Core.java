@@ -44,6 +44,6 @@ public class Core
 	public void run()
 	{
 		while(true)
-			(new TClient(server.connection(),8443)).start();
+			(new TClient(server.connection(),arguments.getTargetPort())).start();
 	}
 }
