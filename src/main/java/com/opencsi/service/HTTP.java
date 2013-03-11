@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import com.opencsi.entity.Message;
+
 public class HTTP
 {
 	private int contentLength;
@@ -43,6 +45,14 @@ public class HTTP
 		// Need to check for non Content-Length whereas they are data in the response body...
 		if (line.split(" ")[0].toLowerCase().equals("http/1.1") && line.split(" ")[1].toLowerCase().equals("200"))
 			response = true; 
+		// Get type Code HTTP: [4xx or 5xx]
+		if (line.split(" ")[0].toLowerCase().equals("http/1.1") && !response)
+		{
+			String message = Message.getHTTPError(line.split(" ")[1].toLowerCase());
+			if (message != null){
+				System.out.println(message);
+			}
+		}
 		// End of header:
 		if(header.substring(header.length() - 1).getBytes()[0] == newLine && header.substring(header.length() - 2).getBytes()[0] == newLine)
 		{
@@ -142,7 +152,6 @@ public class HTTP
 			for(int i=h.length+cLength.getBytes().length,j=0;j<sizeUBody;j++,i++)
 				response[i] = _ubody[j];
 		}
-		//System.out.println(new String(response));
 		return response;
 	}
 	

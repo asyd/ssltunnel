@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+	<SSLError>
+		<NoConnection>Ne peut se connecter au serveur SSL.</NoConnection>
+		<WrongCertificate>Le certificat de connexion est incorrecte.</WrongCertificate>
+		<WrongKey>La clé du certificat est incorrecte.</WrongKey>
+		<FileNotFound>Le certificat est introuvable.</FileNotFound>
+	</SSLError>
+
+	<HTTP>
+		<C403>403</C403>
+		<C404>404</C404>
+		<!--
+		 <C4xx>put your own message here</C4xx>
+		 <C5xx>put your own message here</C5xx>
+		 -->
+	</HTTP>
+</messages>
