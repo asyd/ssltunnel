@@ -11,7 +11,7 @@ public class Message
 {
 	public static String getHTTPError(String CodeError){
 		int code = Integer.valueOf(CodeError);
-		if (code < 400 || code > 506)
+		if (code < 400 || code > 509)
 			return null;
 		/////////////////////////////////////
 		SAXBuilder sxb = new SAXBuilder();
