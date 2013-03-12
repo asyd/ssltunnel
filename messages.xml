@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <messages>
 	<SSLError>
-		<NoConnection>Ne peut se connecter au serveur SSL.</NoConnection>
-		<WrongCertificate>Le certificat de connexion est incorrecte.</WrongCertificate>
-		<WrongKey>La clé du certificat est incorrecte.</WrongKey>
-		<FileNotFound>Le certificat est introuvable.</FileNotFound>
+		<NoConnection>Cannot connect to the EJBCA Server.</NoConnection>
+		<WrongCertificate>Certificate is invalid.</WrongCertificate>
+		<WrongKey>Certificate Key is invalid.</WrongKey>
+		<FileNotFound>Cannot find the certificate.</FileNotFound>
+		<UnrecoverableKeyException></UnrecoverableKeyException>
+		<KeyManagementException></KeyManagementException>
+		<KeyStoreException></KeyStoreException>
+		<NoSuchAlgorithmException></NoSuchAlgorithmException>
 	</SSLError>
 
 	<HTTP>

@@ -24,18 +24,27 @@ public class App
     		System.out.println(Message.getSSLError("FileNotFound"));
     		System.out.println("[CRITICAL]: Closing server.");
     	}
+    	catch(java.net.ConnectException e)
+    	{
+    		System.out.println(Message.getSSLError("NoConnection"));
+    		System.out.println("[CRITICAL]: Closing server.");
+    	}
     	catch(IOException e)
     	{
     		System.out.println(Message.getSSLError("WrongKey"));
     		System.out.println("[CRITICAL]: Closing server.");
     	} catch (UnrecoverableKeyException e) {
-    		e.printStackTrace();
+    		System.out.println(Message.getSSLError("UnrecoverableKeyException"));
+    		System.out.println("[CRITICAL]: Closing server.");
 		} catch (KeyManagementException e) {
-			e.printStackTrace();
+			System.out.println(Message.getSSLError("KeyManagementException"));
+    		System.out.println("[CRITICAL]: Closing server.");
 		} catch (KeyStoreException e) {
-			e.printStackTrace();
+			System.out.println(Message.getSSLError("KeyStoreException"));
+    		System.out.println("[CRITICAL]: Closing server.");
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			System.out.println(Message.getSSLError("NoSuchAlgorithmException"));
+    		System.out.println("[CRITICAL]: Closing server.");
 		} catch (CertificateException e) {
 			System.out.println(Message.getSSLError("WrongCertificate"));
     		System.out.println("[CRITICAL]: Closing server.");
