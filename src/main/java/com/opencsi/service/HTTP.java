@@ -95,7 +95,7 @@ public class HTTP
 		try {
 			while((line = in.readLine()) != null)
 			{
-				line = line.replaceAll("<base href=\"https://", " <base href=\"http://");// [FIXME: if 'https' to 'http' only: bug.]
+				line = line.replaceAll("https://", " http://");
 				unknownResponse += line + "\n";
 				try{
 					if(line.equals("</html>"))
