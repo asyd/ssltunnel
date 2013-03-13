@@ -88,19 +88,19 @@ public class HTTP
 		loop = false;
 	}
 	
-	protected void getUnknownBody(BufferedReader in)
+	protected void getChunkedBody(BufferedReader in)
 	{
 		String line="";
-		unknownResponse = "\n";
+		unknownResponse = "";
 		try {
 			while((line = in.readLine()) != null)
 			{
-				line = line.replaceAll("<base href=\"https://", "<base href=\"http://");// [FIXME: if 'https' to 'http' only: bug.]
-				//line = line.replaceAll(":"+String.valueOf(port)+"/", "/");
+				line = line.replaceAll("<base href=\"https://", " <base href=\"http://");// [FIXME: if 'https' to 'http' only: bug.]
 				unknownResponse += line + "\n";
 				try{
 					if(line.equals("</html>"))
 					{
+						unknownResponse += "\n0\n";
 						loop = false;
 						break;
 					}
@@ -157,7 +157,7 @@ public class HTTP
 				else if (contentLength != 0)
 					this.getBody(read);
 				else if (response && contentLength == 0)
-					this.getUnknownBody(read);
+					this.getChunkedBody(read);
 			} catch (IOException e) {
 				e.getStackTrace();
 				loop = false;
