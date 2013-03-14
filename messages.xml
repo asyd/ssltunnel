@@ -9,9 +9,11 @@
 		<KeyManagementException></KeyManagementException>
 		<KeyStoreException></KeyStoreException>
 		<NoSuchAlgorithmException></NoSuchAlgorithmException>
+		
+		<Timeout></Timeout>
 	</SSLError>
 
-	<HTTP>
+	<HTTP>	
 		<C403>403</C403>
 		<C404>404</C404>
 		<!--

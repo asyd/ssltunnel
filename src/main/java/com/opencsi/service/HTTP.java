@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.SocketTimeoutException;
 
 import com.opencsi.entity.Message;
 
@@ -91,7 +92,10 @@ public class HTTP
 					///////////////////////////////
 					strBody += line + "\n";
 				}while(sizeContent < contentLength && !line.equals("</html>"));
-			}catch(Exception e){
+			}catch(SocketTimeoutException e){
+				Message.getSSLError("Timeout");
+			}
+			catch(Exception e){
 				e.printStackTrace();
 			}
 		}
