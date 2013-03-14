@@ -37,7 +37,7 @@ public class HTTP
 			contentLength = 0;
 			return;
 		}
-		// Content-length: ? [<number>\n]
+		// Content-length: ? [<number>\n] or not: chunked content
 		if (line.split(" ")[0].toLowerCase().equals("content-length:"))
 			contentLength = Integer.parseInt(line.split(" ")[1].substring(0,line.split(" ")[1].length()-1));
 		// Need to check for non Content-Length whereas they are data in the response body...
@@ -125,7 +125,7 @@ public class HTTP
 			_cbody = chunkedResponse.getBytes();
 			sizeCBody = _cbody.length;
 		}
-		byte[] response = new byte[header.getBytes().length + sizeContent + sizeCBody + 1];
+		byte[] response = new byte[header.getBytes().length + sizeContent + sizeCBody];
 		byte[] h = header.getBytes();
 		for(int i=0;i<h.length;i++)
 			response[i] = h[i];
