@@ -142,7 +142,6 @@ public class HTTP
 			for(int i=h.length+cLength.getBytes().length,j=0;j<sizeCBody;j++,i++)
 				response[i] = _cbody[j];
 		}
-		//System.out.println(new String(response));
 		return response;
 	}
 	

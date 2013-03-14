@@ -26,18 +26,18 @@ public class Core
 	{
 		System.out.println("Get arguments for the server..");
 		// [DEV MODE]:
-		sslclient = new SSLClient("localhost",8443,"superadmin.p12","ejbca");
-		server = new Server(8001,150);
+		//sslclient = new SSLClient("localhost",8443,"superadmin.p12","ejbca");
+		//server = new Server(8001,150);
 		// [END DEV MODE]
 		arguments = new Arguments();
-		//new JCommander(arguments,args);
+		new JCommander(arguments,args);
 		if (arguments.getDebug())
 			log = new Debug();
 		System.out.println("Try to connect into the SSL Server...");
-		//sslclient = new SSLClient(arguments.getTargetHost(),arguments.getTargetPort(),arguments.getClientCertificate(),arguments.getCertificatePassphrase());
+		sslclient = new SSLClient(arguments.getTargetHost(),arguments.getTargetPort(),arguments.getClientCertificate(),arguments.getCertificatePassphrase());
 		System.out.println("Done!");
 		System.out.println("Create the server into the "+arguments.getListenPort()+" port with "+(arguments.getMax() == 0?150 : arguments.getMax())+" max connection...");
-		//server = new Server(arguments.getListenPort(),arguments.getMax() == 0?150 : arguments.getMax());
+		server = new Server(arguments.getListenPort(),arguments.getMax() == 0?150 : arguments.getMax());
 		System.out.println("Awaiting for client connection...");
 	}
 	
