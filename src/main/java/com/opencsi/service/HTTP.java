@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 public class HTTP
 {
 	private int contentLength;
-	private String header,unknownResponse,strBody;
+	private String header,chunkedResponse,strBody;
 	private boolean bheader,response;
 	private final byte newLine = System.getProperty("line.separator").getBytes()[0];
 	boolean loop;
@@ -22,7 +22,7 @@ public class HTTP
 		bheader = loop = true;
 		port = portSSL;
 		response = false;
-		unknownResponse = null;
+		chunkedResponse = null;
 		strBody = "";
 	}
 	
@@ -91,16 +91,16 @@ public class HTTP
 	protected void getChunkedBody(BufferedReader in)
 	{
 		String line="";
-		unknownResponse = "";
+		chunkedResponse = "";
 		try {
 			while((line = in.readLine()) != null)
 			{
 				line = line.replaceAll("https://", " http://");
-				unknownResponse += line + "\n";
+				chunkedResponse += line + "\n";
 				try{
 					if(line.equals("</html>"))
 					{
-						unknownResponse += "\n0\n";
+						chunkedResponse += "\n0\n";
 						loop = false;
 						break;
 					}
@@ -117,20 +117,20 @@ public class HTTP
 	{
 		if (header == null)
 			return null;
-		int sizeUBody = 0;
-		byte[] _ubody = new byte[1];
+		int sizeCBody = 0;
+		byte[] _cbody = new byte[1];
 		String cLength = "";
-		if (unknownResponse != null)
+		if (chunkedResponse != null)
 		{
-			_ubody = unknownResponse.getBytes();
-			sizeUBody = _ubody.length;
+			_cbody = chunkedResponse.getBytes();
+			sizeCBody = _cbody.length;
 		}
-		byte[] response = new byte[header.getBytes().length + sizeContent + sizeUBody + 1];
+		byte[] response = new byte[header.getBytes().length + sizeContent + sizeCBody + 1];
 		byte[] h = header.getBytes();
 		for(int i=0;i<h.length;i++)
 			response[i] = h[i];
 		////////////////////////////////////////////////////
-		if (unknownResponse == null)
+		if (chunkedResponse == null)
 		{
 			byte[] body = strBody.getBytes();
 			for(int i=0,j=header.length();i<body.length;i++,j++)
@@ -139,8 +139,8 @@ public class HTTP
 		////////////////////////////////////////////////////
 		else
 		{
-			for(int i=h.length+cLength.getBytes().length,j=0;j<sizeUBody;j++,i++)
-				response[i] = _ubody[j];
+			for(int i=h.length+cLength.getBytes().length,j=0;j<sizeCBody;j++,i++)
+				response[i] = _cbody[j];
 		}
 		//System.out.println(new String(response));
 		return response;
