@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages>
+	<SSLError>
+		<NoConnection>Cannot connect to the EJBCA Server.</NoConnection>
+		<WrongCertificate>Certificate is invalid.</WrongCertificate>
+		<WrongKey>Certificate Key is invalid.</WrongKey>
+		<FileNotFound>Cannot find the certificate.</FileNotFound>
+		<UnrecoverableKeyException></UnrecoverableKeyException>
+		<KeyManagementException></KeyManagementException>
+		<KeyStoreException></KeyStoreException>
+		<NoSuchAlgorithmException></NoSuchAlgorithmException>
+		
+		<Timeout></Timeout>
+	</SSLError>
+
+	<HTTP>	
+		<C403>403</C403>
+		<C404>404</C404>
+		<!--
+		 <C4xx>put your own message here</C4xx>
+		 <C5xx>put your own message here</C5xx>
+		 -->
+	</HTTP>
+</messages>

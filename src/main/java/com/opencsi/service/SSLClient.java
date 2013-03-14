@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -16,6 +17,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 
 import com.opencsi.core.Core;
+import com.opencsi.entity.Message;
 
 public class SSLClient
 {
@@ -74,7 +76,12 @@ public class SSLClient
 				Core.log.write(new String(buffer));
 			}
 			///////////////////////////////
-		}catch(Exception e)
+		}
+		catch(ConnectException e)
+    	{
+    		System.out.println(Message.getSSLError("NoConnection"));
+    	}
+		catch(Exception e)
 		{
 			//e.printStackTrace();
 		}
