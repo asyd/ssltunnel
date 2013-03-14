@@ -109,7 +109,8 @@ public class HTTP
 		try {
 			while((line = in.readLine()) != null)
 			{
-				line = line.replaceAll("https://", " http://");
+				line = line.replaceAll("'https://", " 'http://");
+				line = line.replaceAll("\"https://", " \"http://");
 				chunkedResponse += line + "\n";
 				try{
 					if(line.equals("</html>"))
