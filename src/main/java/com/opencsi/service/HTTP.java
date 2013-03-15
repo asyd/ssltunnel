@@ -115,7 +115,7 @@ public class HTTP
 				try{
 					if(line.equals("</html>"))
 					{
-						chunkedResponse += "\n0\n";
+						chunkedResponse += "\r\n0\r\n";
 						loop = false;
 						break;
 					}
