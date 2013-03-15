@@ -31,7 +31,7 @@ public class Message
 		Document document;
 		try {
 			 document = sxb.build(new File("messages.xml"));
-			 Iterator it = document.getRootElement().getChildren("SSLError").iterator();
+			 Iterator it = document.getRootElement().getChildren("SSLServer").iterator();
 			 if(it.hasNext())
 				 return ((Element) (it.next())).getChild(message).getText();
 		} catch (Exception e) {
@@ -49,7 +49,10 @@ public class Message
 				 return Integer.valueOf(((Element) (it.next())).getChild("Timeout").getText());
 		} catch (Exception e) {
 		}
-		return 60000;
+		if (children.equals("SSLServer"))
+			return 20000;
+		else
+			return 60000;
 	}
 	
 

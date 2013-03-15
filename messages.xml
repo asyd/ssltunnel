@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <messages>
-	<SSLError>
+	<SSLServer>
 		<NoConnection>Cannot connect to the EJBCA Server.</NoConnection>
 		<WrongCertificate>Certificate is invalid.</WrongCertificate>
 		<WrongKey>Certificate Key is invalid.</WrongKey>
@@ -10,9 +10,9 @@
 		<KeyStoreException></KeyStoreException>
 		<NoSuchAlgorithmException></NoSuchAlgorithmException>
 		
-		<!--Timeout: value in ms. (by default: 60000)-->
+		<!--Timeout: value in ms. (by default: 20000)-->
 		<Timeout></Timeout>
-	</SSLError>
+	</SSLServer>
 	
 	<Client>
 	<!--Timeout: value in ms. (by default: 60000)-->
