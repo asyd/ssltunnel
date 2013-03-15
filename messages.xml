@@ -10,8 +10,14 @@
 		<KeyStoreException></KeyStoreException>
 		<NoSuchAlgorithmException></NoSuchAlgorithmException>
 		
+		<!--Timeout: value in ms. (by default: 60000)-->
 		<Timeout></Timeout>
 	</SSLError>
+	
+	<Client>
+	<!--Timeout: value in ms. (by default: 60000)-->
+		<Timeout>10000</Timeout>
+	</Client>
 
 	<HTTP>	
 		<C403>403</C403>

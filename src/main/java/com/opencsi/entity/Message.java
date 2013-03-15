@@ -39,5 +39,18 @@ public class Message
 		return "Cannot connect to the SSL Server.";
 	}
 	
+	public static int getTimeOut(String children){
+		SAXBuilder sxb = new SAXBuilder();
+		Document document;
+		try {
+			 document = sxb.build(new File("messages.xml"));
+			 Iterator it = document.getRootElement().getChildren(children).iterator();
+			 if(it.hasNext())
+				 return Integer.valueOf(((Element) (it.next())).getChild("Timeout").getText());
+		} catch (Exception e) {
+		}
+		return 60000;
+	}
+	
 
 }

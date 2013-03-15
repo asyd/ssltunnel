@@ -16,7 +16,7 @@ public class SSLClient
 		this.certificate = certificate;
 		this.sock = sock;
 		this.sock.setUseClientMode(true);
-		this.sock.setSoTimeout(60000);// For security
+		this.sock.setSoTimeout(Message.getTimeOut("SSLServer"));// For security
 		this.sock.startHandshake();
 	}
 	

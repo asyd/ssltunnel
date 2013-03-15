@@ -7,6 +7,7 @@ import java.util.Date;
 
 import com.opencsi.core.Core;
 import com.opencsi.entity.Client;
+import com.opencsi.entity.Message;
 
 public class TClient extends Thread
 {
@@ -22,7 +23,7 @@ public class TClient extends Thread
 		System.out.println(" [" + client.sock.getInetAddress().getHostAddress()+"]"   + " on port " + client.sock.getPort() + ".");
 		http = new HTTP(portSSL);
 		try {
-			this.client.sock.setSoTimeout(60000);// For security
+			this.client.sock.setSoTimeout(Message.getTimeOut("Client"));// For security
 			out = new PrintWriter(client.sock.getOutputStream(), true);
 		} catch (IOException e) {
 			e.printStackTrace();
