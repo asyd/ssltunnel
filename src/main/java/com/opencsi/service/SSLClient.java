@@ -80,7 +80,7 @@ public class SSLClient
 		catch(ConnectException e)
     	{
     		System.out.println(Message.getSSLError("NoConnection"));
-    		throw new ConnectException();
+    		throw new Exception();
     	}
 		catch(Exception e)
 		{
