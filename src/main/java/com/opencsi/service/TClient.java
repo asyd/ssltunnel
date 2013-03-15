@@ -38,12 +38,17 @@ public class TClient extends Thread
 			// Send to the SSL Sock using synchronized protection if there is data:
 			if (data != null)
 			{
-				String strSend = new String(Core.sslclient.send(data));
-				out.print(strSend);
-				out.flush();
+				String strSend;
+				try {
+					strSend = new String(Core.sslclient.send(data));
+					out.print(strSend);
+					out.flush();
+				} catch (Exception e) {
+					// [FEATURE]: put here the client message here (using the Messages entity class cf. config.xml).
+				}
 			}
 		} catch (IOException e) {
-			// Connection reset
+			// Connection reset or 
 			//e.printStackTrace();
 		}
 		try {

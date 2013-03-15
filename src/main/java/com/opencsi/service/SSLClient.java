@@ -52,7 +52,7 @@ public class SSLClient
 	}
 	
 	// [FIXME] synchronized
-	public synchronized byte[] send(byte[] stream)
+	public synchronized byte[] send(byte[] stream) throws Exception
 	{
 		byte[] buffer = new byte[0];
 		try{
@@ -80,10 +80,13 @@ public class SSLClient
 		catch(ConnectException e)
     	{
     		System.out.println(Message.getSSLError("NoConnection"));
+    		throw new ConnectException();
     	}
 		catch(Exception e)
 		{
-			//e.printStackTrace();
+			out.close();
+			client.sock.close();
+			throw new Exception();
 		}
 		try {
 			out.close();
