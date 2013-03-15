@@ -10,12 +10,14 @@
 		<KeyStoreException></KeyStoreException>
 		<NoSuchAlgorithmException></NoSuchAlgorithmException>
 		
+		<ConnectionTimeOut>Timeout from the SSL Server!</ConnectionTimeOut>
+		
 		<!--Timeout: value in ms. (by default: 20000)-->
 		<Timeout></Timeout>
 	</SSLServer>
 	
 	<Client>
-	<!--Timeout: value in ms. (by default: 60000)-->
+		<!--Timeout: value in ms. (by default: 60000)-->
 		<Timeout>10000</Timeout>
 	</Client>
 

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.SocketTimeoutException;
+import java.util.regex.Pattern;
+
+import scala.util.matching.Regex;
 
 import com.opencsi.entity.Message;
 
@@ -96,7 +99,7 @@ public class HTTP
 				Message.getSSLError("Timeout");
 			}
 			catch(Exception e){
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		loop = false;
@@ -107,24 +110,23 @@ public class HTTP
 		String line="";
 		chunkedResponse = "";
 		try {
+			Pattern regex = Pattern.compile("</html>$");
 			while((line = in.readLine()) != null)
 			{
 				line = line.replaceAll("'https://", " 'http://");
 				line = line.replaceAll("\"https://", " \"http://");
 				chunkedResponse += line + "\n";
-				try{
-					if(line.equals("</html>"))
-					{
-						chunkedResponse += "\r\n0\r\n";
-						loop = false;
-						break;
-					}
-				}catch(Exception e){
-					//e.printStackTrace();
+				if(line.equals("</html>") || regex.matcher(line).find())
+				{
+					chunkedResponse += "\r\n0\r\n";
+					loop = false;
+					break;
 				}
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch(Throwable e){
+			System.out.println(Message.getSSLError("ConnectionTimeOut"));
+			chunkedResponse += "\n0\r\n";
+			loop = false;
 		}
 	}
 	
