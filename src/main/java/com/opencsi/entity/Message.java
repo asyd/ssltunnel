@@ -9,6 +9,7 @@ import org.jdom.input.SAXBuilder;
 
 public class Message
 {
+	private static String FILE_NAME = "config.xml";
 	public static String getHTTPError(String CodeError){
 		int code = Integer.valueOf(CodeError);
 		if (code < 400 || code > 509)
@@ -17,7 +18,7 @@ public class Message
 		SAXBuilder sxb = new SAXBuilder();
 		Document document;
 		try {
-			 document = sxb.build(new File("messages.xml"));
+			 document = sxb.build(new File(FILE_NAME));
 			 Iterator it = document.getRootElement().getChildren("HTTP").iterator();
 			 if(it.hasNext())
 				 return ((Element) (it.next())).getChild("C"+CodeError).getText();
@@ -30,7 +31,7 @@ public class Message
 		SAXBuilder sxb = new SAXBuilder();
 		Document document;
 		try {
-			 document = sxb.build(new File("messages.xml"));
+			 document = sxb.build(new File(FILE_NAME));
 			 Iterator it = document.getRootElement().getChildren("SSLServer").iterator();
 			 if(it.hasNext())
 				 return ((Element) (it.next())).getChild(message).getText();
@@ -43,7 +44,7 @@ public class Message
 		SAXBuilder sxb = new SAXBuilder();
 		Document document;
 		try {
-			 document = sxb.build(new File("messages.xml"));
+			 document = sxb.build(new File(FILE_NAME));
 			 Iterator it = document.getRootElement().getChildren(children).iterator();
 			 if(it.hasNext())
 				 return Integer.valueOf(((Element) (it.next())).getChild("Timeout").getText());
